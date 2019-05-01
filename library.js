@@ -30,9 +30,20 @@ var library = {
 // p02: Other Playlist - 1 tracks
 
 var printPlaylists = function () {
+var array = Object.values(playListPrintFormat());
+for (let i of array){
+console.log(i);
+}
+
+};
+
+// Writing a new function to store print format playlist in an object
+// instead of printing
+var playListPrintFormat = function (){
 var id = "";
 var name = "";
 var tracks = 0;
+var output = {};
 
   for (let list in library.playlists){
     for (let key in library.playlists[list]){
@@ -50,11 +61,13 @@ var tracks = 0;
       }
 
     }
-  console.log(id + ":", name, "-", tracks, "tracks");
+  output[id] = id + ": " + name + " - " + tracks + " tracks";
+
+  // console.log(id + ":", name, "-", tracks, "tracks");
   }
 
+return (output);
 };
-
 
 // prints a list of all tracks, in the form:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
@@ -86,6 +99,7 @@ var album = "";
         album = library.tracks[list][key];
       }
     }
+
   console.log(id + ":", name, "by", artist, "(" + album + ")");
   }
 
@@ -98,8 +112,14 @@ var album = "";
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
 var printPlaylist = function (playlistId) {
+  for (let list in library.playlists){
+    if (list === playlistId){
 
-}
+    }
+
+
+  }
+};
 
 
 // adds an existing track to an existing playlist
@@ -142,5 +162,4 @@ var printSearchResults = function(query) {
 }
 
 
-printTracks();
-// console.log(library.playlists);
+printPlaylists();
