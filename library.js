@@ -30,7 +30,7 @@ var library = {
 // p02: Other Playlist - 1 tracks
 
 var printPlaylists = function () {
-  var array = Object.values(playListPrintFormat());
+  var array = Object.values(playListsPrintFormat());
   for (let i of array){
     console.log(i);
   }
@@ -39,7 +39,7 @@ var printPlaylists = function () {
 
 // Writing a new function to store print format playlist in an object
 // instead of printing
-var playListPrintFormat = function (){
+var playListsPrintFormat = function (){
   var id = "";
   var name = "";
   var tracks = 0;
