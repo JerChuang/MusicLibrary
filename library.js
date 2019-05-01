@@ -53,8 +53,6 @@ var tracks = 0;
   console.log(id + ":", name, "-", tracks, "tracks");
   }
 
-  //console.log(output);
-
 };
 
 
@@ -64,8 +62,34 @@ var tracks = 0;
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
 var printTracks = function () {
+var id = "";
+var name = "";
+var artist = "";
+var album = "";
 
-}
+  for (let list in library.tracks){
+    for (let key in library.tracks[list]){
+
+      if(key === "id"){
+        id = library.tracks[list][key];
+      }
+
+      if(key === "name"){
+        name = library.tracks[list][key];
+      }
+
+      if(key === "artist"){
+        artist = library.tracks[list][key];
+      }
+
+      if(key === "album"){
+        album = library.tracks[list][key];
+      }
+    }
+  console.log(id + ":", name, "by", artist, "(" + album + ")");
+  }
+
+};
 
 
 // prints a list of tracks for a given playlist, in the form:
@@ -118,5 +142,5 @@ var printSearchResults = function(query) {
 }
 
 
-printPlaylists();
+printTracks();
 // console.log(library.playlists);
