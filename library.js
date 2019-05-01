@@ -21,7 +21,7 @@ var library = {
                       tracks: ["t03"]
                     }
              }
-}
+};
 
 // FUNCTIONS TO IMPLEMENT:
 
@@ -30,8 +30,32 @@ var library = {
 // p02: Other Playlist - 1 tracks
 
 var printPlaylists = function () {
+var id = "";
+var name = "";
+var tracks = 0;
 
-}
+  for (let list in library.playlists){
+    for (let key in library.playlists[list]){
+
+      if(key === "id"){
+        id = library.playlists[list][key];
+      }
+
+      if(key === "name"){
+        name = library.playlists[list][key];
+      }
+
+      if(key === "tracks"){
+        tracks = library.playlists[list][key].length;
+      }
+
+    }
+  console.log(id + ":", name, "-", tracks, "tracks");
+  }
+
+  //console.log(output);
+
+};
 
 
 // prints a list of all tracks, in the form:
@@ -86,9 +110,13 @@ var addPlaylist = function (name) {
 // STRETCH:
 // given a query string string, prints a list of tracks
 // where the name, artist or album contains the query string (case insensitive)
-// tip: use "string".search("tri") 
+// tip: use "string".search("tri")
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
 
 var printSearchResults = function(query) {
 
 }
+
+
+printPlaylists();
+// console.log(library.playlists);
