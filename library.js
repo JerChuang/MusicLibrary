@@ -30,20 +30,20 @@ var library = {
 // p02: Other Playlist - 1 tracks
 
 var printPlaylists = function () {
-var array = Object.values(playListPrintFormat());
-for (let i of array){
-console.log(i);
-}
+  var array = Object.values(playListPrintFormat());
+  for (let i of array){
+    console.log(i);
+  }
 
 };
 
 // Writing a new function to store print format playlist in an object
 // instead of printing
 var playListPrintFormat = function (){
-var id = "";
-var name = "";
-var tracks = 0;
-var output = {};
+  var id = "";
+  var name = "";
+  var tracks = 0;
+  var output = {};
 
   for (let list in library.playlists){
     for (let key in library.playlists[list]){
@@ -62,8 +62,6 @@ var output = {};
 
     }
   output[id] = id + ": " + name + " - " + tracks + " tracks";
-
-  // console.log(id + ":", name, "-", tracks, "tracks");
   }
 
 return (output);
@@ -75,10 +73,21 @@ return (output);
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
 var printTracks = function () {
-var id = "";
-var name = "";
-var artist = "";
-var album = "";
+  var array = Object.values(tracksPrintFormat());
+  for (let i of array){
+    console.log(i);
+  }
+
+};
+
+//writing a new function to store print format track lists in an object
+//instead of printing
+var tracksPrintFormat = function (){
+  var id = "";
+  var name = "";
+  var artist = "";
+  var album = "";
+  var output = {};
 
   for (let list in library.tracks){
     for (let key in library.tracks[list]){
@@ -99,10 +108,11 @@ var album = "";
         album = library.tracks[list][key];
       }
     }
-
-  console.log(id + ":", name, "by", artist, "(" + album + ")");
+  output[id] = id + ": " + name + " by " + artist + " (" + album + ")";
+  // console.log(id + ":", name, "by", artist, "(" + album + ")");
+  // console.log(Object.values(output));
   }
-
+return output;
 };
 
 
@@ -162,4 +172,4 @@ var printSearchResults = function(query) {
 }
 
 
-printPlaylists();
+printTracks();
