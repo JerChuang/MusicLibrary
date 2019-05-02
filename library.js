@@ -20,7 +20,29 @@ var library = {
                       name: "Other Playlist",
                       tracks: ["t03"]
                     }
-             }
+             },
+
+  printPlaylists: function () { var array = Object.values(this.playListsPrintFormat());
+                                for (let i of array){
+                                  console.log(i);
+                                }
+                              },
+  playListsPrintFormat: function (){  var id = "";
+                                      var name = "";
+                                      var tracks = 0;
+                                      var output = {};
+
+                                      for (let list in this.playlists){
+                                        id = this.playlists[list].id;
+                                        name = this.playlists[list].name;
+                                        tracks = this.playlists[list].tracks.length;
+                                        output[id] = id + ": " + name + " - " + tracks + " tracks";
+                                      }
+
+                                      return (output);
+                                    }
+
+
 };
 
 // FUNCTIONS TO IMPLEMENT:
@@ -137,7 +159,7 @@ var addTrack = function (name, artist, album) {
                             name: name,
                             artist: artist,
                             album: album};
-  console.log(library.tracks);
+  // console.log(library.tracks);
 };
 
 
@@ -147,7 +169,7 @@ var addPlaylist = function (name) {
   let playlistId = uid();
   library.playlists[playlistId] = { id: playlistId,
                             name: name,};
-  console.log(library.playlists);
+  // console.log(library.playlists);
 
 };
 
@@ -162,8 +184,8 @@ var printSearchResults = function(query) {
 
 };
 
-
-addPlaylist("superlist");
+library.printPlaylists();
+// addPlaylist("superlist");
 // addTrack("Jonesonsong", "Jones","jonesalbum");
 // addTrackToPlaylist("t04", "p01");
 // printPlaylists();
