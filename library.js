@@ -133,7 +133,7 @@ var uid = function() {
 
 var addTrack = function (name, artist, album) {
 let trackId = uid();
-library.tracks[uid] = { id: trackId(),
+library.tracks[trackId] = { id: trackId,
                         name: name,
                         artist: artist,
                         album: album};
@@ -156,7 +156,11 @@ var addPlaylist = function (name) {
 
 var printSearchResults = function(query) {
 
-}
+};
+
+
+
+addTrack("Jonesonsong", "Jones","jonesalbum");
 // addTrackToPlaylist("t04", "p01");
 // printPlaylists();
 // printTracks();
