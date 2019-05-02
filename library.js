@@ -27,6 +27,7 @@ var library = {
                                   console.log(i);
                                 }
                               },
+
   playListsPrintFormat: function (){  var id = "";
                                       var name = "";
                                       var tracks = 0;
@@ -40,7 +41,64 @@ var library = {
                                       }
 
                                       return (output);
-                                    }
+                                    },
+
+  printTracks: function () { var array = Object.values(this.tracksPrintFormat());
+                              for (let i of array){
+                                console.log(i);
+                              }
+                            },
+
+  tracksPrintFormat: function (){ var id = "";
+                                  var name = "";
+                                  var artist = "";
+                                  var album = "";
+                                  var output = {};
+
+                                  for (let list in this.tracks){
+                                    id = this.tracks[list].id;
+                                    name = this.tracks[list].name;
+                                    artist = this.tracks[list].artist;
+                                    album = this.tracks[list].album;
+                                    output[id] = id + ": " + name + " by " + artist + " (" + album + ")";
+                                  }
+                                  return output;
+                                },
+
+  printPlaylist: function (playlistId) {  let playlistsPrint = this.playListsPrintFormat();
+                                          let tracksPrint = this.tracksPrintFormat();
+                                          let tracks = [];
+                                          //printing the playlist
+                                          console.log(playlistsPrint[playlistId]);
+                                          //fetching tracks in the playlist
+                                          tracks = this.playlists[playlistId].tracks;
+                                          //printing the tracks of the playlist
+                                            for (let k of tracks){
+                                                console.log(tracksPrint[k]);
+                                            }
+                                        },
+  addTrackToPlaylist: function (trackId, playlistId) { if (this.playlists[playlistId] && this.tracks[trackId]){
+                                                           this.playlists[playlistId].tracks.push(trackId);
+                                                       }
+                                                       // console.log(this.playlists[playlistId].tracks);
+                                                       // else
+                                                       // console.log("not an existing track or playlist");
+                                                     },
+  uid : function() { return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);},
+
+  addTrack : function (name, artist, album) { let trackId = uid();
+                                              this.tracks[trackId] = { id: trackId,
+                                                                        name: name,
+                                                                        artist: artist,
+                                                                        album: album};
+                                              console.log(library.tracks);
+                                            },
+  addPlaylist : function (name) { let playlistId = uid();
+                                  this.playlists[playlistId] = { id: playlistId,
+                                                            name: name,};
+                                  // console.log(library.playlists);
+
+                                }
 
 
 };
@@ -51,64 +109,64 @@ var library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 
-var printPlaylists = function () {
-  var array = Object.values(playListsPrintFormat());
-  for (let i of array){
-    console.log(i);
-  }
+// var printPlaylists = function () {
+//   var array = Object.values(playListsPrintFormat());
+//   for (let i of array){
+//     console.log(i);
+//   }
 
-};
+// };
 
 // Writing a new function to store print format playlist in an object
 // instead of printing
-var playListsPrintFormat = function (){
-  var id = "";
-  var name = "";
-  var tracks = 0;
-  var output = {};
+// var playListsPrintFormat = function (){
+//   var id = "";
+//   var name = "";
+//   var tracks = 0;
+//   var output = {};
 
-  for (let list in library.playlists){
-    id = library.playlists[list].id;
-    name = library.playlists[list].name;
-    tracks = library.playlists[list].tracks.length;
-    output[id] = id + ": " + name + " - " + tracks + " tracks";
-  }
+//   for (let list in library.playlists){
+//     id = library.playlists[list].id;
+//     name = library.playlists[list].name;
+//     tracks = library.playlists[list].tracks.length;
+//     output[id] = id + ": " + name + " - " + tracks + " tracks";
+//   }
 
-  return (output);
-};
+//   return (output);
+// };
 
 // prints a list of all tracks, in the form:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 
-var printTracks = function () {
-  var array = Object.values(tracksPrintFormat());
-  for (let i of array){
-    console.log(i);
-  }
+// var printTracks = function () {
+//   var array = Object.values(tracksPrintFormat());
+//   for (let i of array){
+//     console.log(i);
+//   }
 
-};
+// };
 
-//writing a new function to store print format track lists in an object
-//instead of printing
-var tracksPrintFormat = function (){
-  var id = "";
-  var name = "";
-  var artist = "";
-  var album = "";
-  var output = {};
+// //writing a new function to store print format track lists in an object
+// //instead of printing
+// var tracksPrintFormat = function (){
+//   var id = "";
+//   var name = "";
+//   var artist = "";
+//   var album = "";
+//   var output = {};
 
-  for (let list in library.tracks){
-    id = library.tracks[list].id;
-    name = library.tracks[list].name;
-    artist = library.tracks[list].artist;
-    album = library.tracks[list].album;
-    output[id] = id + ": " + name + " by " + artist + " (" + album + ")";
-  }
+//   for (let list in library.tracks){
+//     id = library.tracks[list].id;
+//     name = library.tracks[list].name;
+//     artist = library.tracks[list].artist;
+//     album = library.tracks[list].album;
+//     output[id] = id + ": " + name + " by " + artist + " (" + album + ")";
+//   }
 
-  return output;
-};
+//   return output;
+// };
 
 
 // prints a list of tracks for a given playlist, in the form:
@@ -116,19 +174,19 @@ var tracksPrintFormat = function (){
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
-var printPlaylist = function (playlistId) {
-  let playlistsPrint = playListsPrintFormat();
-  let tracksPrint = tracksPrintFormat();
-  let tracks = [];
-  //printing the playlist
-  console.log(playlistsPrint[playlistId]);
-  //fetching tracks in the playlist
-  tracks = library.playlists[playlistId].tracks;
-  //printing the tracks of the playlist
-    for (let k of tracks){
-        console.log(tracksPrint[k]);
-    }
-};
+// var printPlaylist = function (playlistId) {
+//   let playlistsPrint = playListsPrintFormat();
+//   let tracksPrint = tracksPrintFormat();
+//   let tracks = [];
+//   //printing the playlist
+//   console.log(playlistsPrint[playlistId]);
+//   //fetching tracks in the playlist
+//   tracks = library.playlists[playlistId].tracks;
+//   //printing the tracks of the playlist
+//     for (let k of tracks){
+//         console.log(tracksPrint[k]);
+//     }
+// };
 
 
 // adds an existing track to an existing playlist
@@ -184,10 +242,10 @@ var printSearchResults = function(query) {
 
 };
 
-library.printPlaylists();
-// addPlaylist("superlist");
-// addTrack("Jonesonsong", "Jones","jonesalbum");
-// addTrackToPlaylist("t04", "p01");
+// library.printPlaylist("p01");
+library.addPlaylist("superlist");
+library.addTrack("Jonesonsong", "Jones","jonesalbum");
+// library.addTrackToPlaylist("t03", "p01");
 // printPlaylists();
 // printTracks();
 // printPlaylist("p01");
