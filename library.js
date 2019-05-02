@@ -46,25 +46,13 @@ var playListsPrintFormat = function (){
   var output = {};
 
   for (let list in library.playlists){
-    for (let key in library.playlists[list]){
-
-      if(key === "id"){
-        id = library.playlists[list][key];
-      }
-
-      if(key === "name"){
-        name = library.playlists[list][key];
-      }
-
-      if(key === "tracks"){
-        tracks = library.playlists[list][key].length;
-      }
-
-    }
-  output[id] = id + ": " + name + " - " + tracks + " tracks";
+    id = library.playlists[list].id;
+    name = library.playlists[list].name;
+    tracks = library.playlists[list].tracks.length;
+    output[id] = id + ": " + name + " - " + tracks + " tracks";
   }
 
-return (output);
+  return (output);
 };
 
 // prints a list of all tracks, in the form:
@@ -90,29 +78,14 @@ var tracksPrintFormat = function (){
   var output = {};
 
   for (let list in library.tracks){
-    for (let key in library.tracks[list]){
-
-      if(key === "id"){
-        id = library.tracks[list][key];
-      }
-
-      if(key === "name"){
-        name = library.tracks[list][key];
-      }
-
-      if(key === "artist"){
-        artist = library.tracks[list][key];
-      }
-
-      if(key === "album"){
-        album = library.tracks[list][key];
-      }
-    }
-  output[id] = id + ": " + name + " by " + artist + " (" + album + ")";
-  // console.log(id + ":", name, "by", artist, "(" + album + ")");
-  // console.log(Object.values(output));
+    id = library.tracks[list].id;
+    name = library.tracks[list].name;
+    artist = library.tracks[list].artist;
+    album = library.tracks[list].album;
+    output[id] = id + ": " + name + " by " + artist + " (" + album + ")";
   }
-return output;
+
+  return output;
 };
 
 
@@ -125,41 +98,27 @@ var printPlaylist = function (playlistId) {
   let playlistsPrint = playListsPrintFormat();
   let tracksPrint = tracksPrintFormat();
   let tracks = [];
-
-  // console.log(playlistsPrint);
-  // console.log(tracksPrint);
-  // console.log(tracks);
-
   //printing the playlist
-  for (let i in playlistsPrint){
-    if (i === playlistId){
-      console.log(playlistsPrint[i]);
-    }
-  }
+  console.log(playlistsPrint[playlistId]);
   //fetching tracks in the playlist
-  for (let list in library.playlists){
-    if (list === playlistId){
-      for (let key in library.playlists[list]){
-        if (key === "tracks"){
-          tracks = library.playlists[list][key];
-        }
-      }
-    }
-  }
+  tracks = library.playlists[playlistId].tracks;
   //printing the tracks of the playlist
-  for (let j in tracksPrint){
     for (let k of tracks){
-      if (j === k){
-        console.log(tracksPrint[j]);
-      }
+        console.log(tracksPrint[k]);
     }
-  }
 };
 
 
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
+  for (let list in library.playlists){
+    if (list === playlistId){
+      library.playlists[list]
+    }
+
+  }
+
 
 }
 
@@ -196,5 +155,6 @@ var printSearchResults = function(query) {
 
 }
 
-
-printPlaylist("p01");
+// printPlaylists();
+// printTracks();
+// printPlaylist("p01");
