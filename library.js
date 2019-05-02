@@ -132,18 +132,22 @@ var uid = function() {
 // adds a track to the library
 
 var addTrack = function (name, artist, album) {
-let trackId = uid();
-library.tracks[trackId] = { id: trackId,
-                        name: name,
-                        artist: artist,
-                        album: album};
-console.log(library.tracks);
+  let trackId = uid();
+  library.tracks[trackId] = { id: trackId,
+                            name: name,
+                            artist: artist,
+                            album: album};
+  console.log(library.tracks);
 };
 
 
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
+  let playlistId = uid();
+  library.playlists[playlistId] = { id: playlistId,
+                            name: name,};
+  console.log(library.playlists);
 
 };
 
@@ -159,8 +163,8 @@ var printSearchResults = function(query) {
 };
 
 
-
-addTrack("Jonesonsong", "Jones","jonesalbum");
+addPlaylist("superlist");
+// addTrack("Jonesonsong", "Jones","jonesalbum");
 // addTrackToPlaylist("t04", "p01");
 // printPlaylists();
 // printTracks();
