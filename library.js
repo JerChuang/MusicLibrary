@@ -122,12 +122,37 @@ return output;
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
 var printPlaylist = function (playlistId) {
+  let playlistsPrint = playListsPrintFormat();
+  let tracksPrint = tracksPrintFormat();
+  let tracks = [];
+
+  // console.log(playlistsPrint);
+  // console.log(tracksPrint);
+  // console.log(tracks);
+
+  //printing the playlist
+  for (let i in playlistsPrint){
+    if (i === playlistId){
+      console.log(playlistsPrint[i]);
+    }
+  }
+  //fetching tracks in the playlist
   for (let list in library.playlists){
     if (list === playlistId){
-
+      for (let key in library.playlists[list]){
+        if (key === "tracks"){
+          tracks = library.playlists[list][key];
+        }
+      }
     }
-
-
+  }
+  //printing the tracks of the playlist
+  for (let j in tracksPrint){
+    for (let k of tracks){
+      if (j === k){
+        console.log(tracksPrint[j]);
+      }
+    }
   }
 };
 
@@ -172,4 +197,4 @@ var printSearchResults = function(query) {
 }
 
 
-printTracks();
+printPlaylist("p01");
