@@ -112,15 +112,13 @@ var printPlaylist = function (playlistId) {
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
-  for (let list in library.playlists){
-    if (list === playlistId){
-      library.playlists[list]
-    }
+   if (library.playlists[playlistId] && library.tracks[trackId]){
+    library.playlists[playlistId].tracks.push(trackId);
+   }
+   else
+   console.log("not an existing track or playlist")
 
-  }
-
-
-}
+};
 
 
 // generates a unique id
@@ -128,21 +126,26 @@ var addTrackToPlaylist = function (trackId, playlistId) {
 
 var uid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-}
+};
 
 
 // adds a track to the library
 
 var addTrack = function (name, artist, album) {
-
-}
+let trackId = uid();
+library.tracks[uid] = { id: trackId(),
+                        name: name,
+                        artist: artist,
+                        album: album};
+console.log(library.tracks);
+};
 
 
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
 
-}
+};
 
 
 // STRETCH:
@@ -154,7 +157,7 @@ var addPlaylist = function (name) {
 var printSearchResults = function(query) {
 
 }
-
+// addTrackToPlaylist("t04", "p01");
 // printPlaylists();
 // printTracks();
 // printPlaylist("p01");
